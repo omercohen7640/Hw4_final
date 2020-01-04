@@ -30,13 +30,13 @@ int Cashier::getTicketProfit() {
 
 int sellTicketsHelp(int movie_theater_num,int movie_price, Theater *p_theater, int tickets_num, int row, int col)
 {
-    if (row <=0 || col <= 0 || row > p_theater->getRowsNum() || (col+tickets_num) > p_theater->getColumnsNum()) return 0; // ilegal row or col
+    if (row <=0 || col <= 0 || row > p_theater->getRowsNum() || (col+tickets_num-1) > p_theater->getColumnsNum()) return 0; // ilegal row or col
     if (movie_theater_num != p_theater->getTheaterNum()) return 0; // check if the movie is shown in the given theater
     for (int i = col; i < col + tickets_num; ++i) {
-        if (p_theater->getElement(row,i-1) == TAKEN ) return 0;
+        if (p_theater->getElement(row,i) == TAKEN ) return 0;
     }
     for (int i = col ; i < col + tickets_num; i++) {
-        p_theater->setElement(row,i - 1,TAKEN);
+        p_theater->setElement(row,i,TAKEN);
     }
     return tickets_num * movie_price;
 }

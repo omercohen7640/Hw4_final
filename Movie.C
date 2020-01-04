@@ -102,7 +102,7 @@ BOOL Movie::addScreening(int day, int hour)
             //if its not the first slot we can check in comparison to prev screening
             if (i > 0)
             {
-                if ((screeningTime_.getElement(day, i) + len_in_hours) > static_cast<double>(hour))
+                if ((screeningTime_.getElement(day, i) + len_in_hours) >= static_cast<double>(hour))
                 {
                     return FALSE;
                 }
